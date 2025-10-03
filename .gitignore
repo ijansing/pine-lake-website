@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+git
+# Virtual environment
+venv/
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# Environment variables
+.env
+
+# Mac system files
+.DS_Store
+
+# SQLite / Instance files
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Backup or temp files
+*.bak
+*.swp
+*.tmp
+
+# Virtual envs
+.venv/
+venv/
+pine_lake_app/venv/
+
+# SQLite / instance files
+instance/
+*.db
+*.sqlite*
+
+# Logs
+*.log
+
+# Virtual envs
+.venv/
+venv/
+pine_lake_app/venv/
+
+# SQLite / instance files
+instance/
+*.db
+*.sqlite*
+
+# Logs
+*.log

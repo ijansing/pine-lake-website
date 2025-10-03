@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Pine Lake Archives</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      color: white;
+      background-color: black;
+      background-image: url("/static/images/pine_lake_bg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 30px;
+      z-index: 10;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    .left-section {
+      width: 66.66%;
+      padding: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .left-section h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .right-section {
+      width: 33.33%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .shelf {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .book {
+      width: 40px;
+      height: 120px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #533;
+      box-shadow: 2px 2px 5px black;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .book:hover {
+      transform: scale(1.05);
+      box-shadow: 3px 3px 8px black;
+    }
+
+    .book.clicked {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 0;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const books = document.querySelectorAll(".book");
+
+      books.forEach(book => book.classList.remove("clicked"));
+
+      books.forEach(book => {
+        book.addEventListener("click", () => {
+          const family = book.getAttribute("data-family");
+          book.classList.add("clicked");
+          setTimeout(() => {
+            window.location.href = `/book/${family}`;
+          }, 300);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div><a href="{{ url_for('home') }}">The Pine Lake Archives</a></div>
+    <div>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('create_memory') }}">Share a Memory</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="left-section">
+    <h1>The Pine Lake Archives</h1>
+  </div>
+
+  <div class="right-section">
+    {% for row in range(7) %}
+    <div class="shelf">
+      {% for col in range(5) %}
+      {% set index = row * 5 + col %}
+      <div class="book" data-family="family{{ index }}"
+           style="background-image: url('{{ url_for('static', filename='book_spines/spine' ~ index ~ '.png') }}');">
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

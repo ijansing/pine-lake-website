@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pine Lake Weather</title>
+  </head>
+  <body>
+    <h1>Pine Lake Weather</h1>
+    <p>Coordinates: {{ lat }}, {{ lon }} ({{ tz }})</p>
+
+    <iframe
+      src="https://embed.windy.com/embed2.html?lat={{ lat }}&lon={{ lon }}&zoom=9&level=surface&overlay=wind&product=ecmwf&marker=true"
+      width="650" height="450" frameborder="0">
+    </iframe>
+  </body>
+</html>
