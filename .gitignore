@@ -30,28 +30,3 @@ instance/
 *.swp
 *.tmp
 
-# Virtual envs
-.venv/
-venv/
-pine_lake_app/venv/
-
-# SQLite / instance files
-instance/
-*.db
-*.sqlite*
-
-# Logs
-*.log
-
-# Virtual envs
-.venv/
-venv/
-pine_lake_app/venv/
-
-# SQLite / instance files
-instance/
-*.db
-*.sqlite*
-
-# Logs
-*.log
